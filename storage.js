@@ -10,7 +10,7 @@ const dadosIniciais = [
         precoOriginal: 89.90, preco: 45.00, // Desconto de ~50%
         genero: "Biografia", estado: "Seminovo", 
         sinopse: "A biografia exclusiva do criador da Apple, baseada em mais de quarenta entrevistas.",
-        imagem: "https://m.media-amazon.com/images/I/41yJ75gpV-L._SY445_SX342_.jpg" 
+        imagem: "https://m.media-amazon.com/images/I/71xUgLxhY6L._SY522_.jpg" 
     },
     { 
         id: 2, titulo: "Frida: A biografia", autor: "Hayden Herrera", 
@@ -33,7 +33,7 @@ const dadosIniciais = [
         precoOriginal: 39.90, preco: 12.00, 
         genero: "Clássico", estado: "Usado - Aceitável", 
         sinopse: "A dúvida de Bentinho: Capitu traiu ou não traiu? Um clássico da literatura brasileira.",
-        imagem: "https://m.media-amazon.com/images/I/41897yAI4LL._SY445_SX342_.jpg" 
+        imagem: "https://m.media-amazon.com/images/I/416E0ngf0xL._SY445_SX342_ControlCacheEqualizer_.jpg" 
     },
     { 
         id: 5, titulo: "A Hora da Estrela", autor: "Clarice Lispector", 
@@ -84,7 +84,7 @@ const dadosIniciais = [
         precoOriginal: 64.90, preco: 40.00, 
         genero: "Ficção", estado: "Usado - Capa Dura", 
         sinopse: "O início da jornada do bruxo mais famoso do mundo em Hogwarts.",
-        imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_874295-MLU77447335561_072024-F.webp" 
+        imagem: "https://m.media-amazon.com/images/I/41897yAI4LL._SY445_SX342_.jpg" 
     },
     { 
         id: 12, titulo: "It: A Coisa", autor: "Stephen King", 
