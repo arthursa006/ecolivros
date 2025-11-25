@@ -84,9 +84,7 @@ function verDetalhes(id) {
         document.getElementById('detalhePreco').innerText = livro.preco.toFixed(2);
         document.getElementById('detalheImagem').src = livro.imagem;
 
-        // Configura botão de adicionar (passando o ID correto)
         const btnAdicionar = document.getElementById('btn-adicionar-modal');
-        // Clona o botão para limpar eventos anteriores (evita adicionar 2x ao clicar várias vezes)
         const novoBtn = btnAdicionar.cloneNode(true);
         btnAdicionar.parentNode.replaceChild(novoBtn, btnAdicionar);
         
@@ -102,13 +100,8 @@ function verDetalhes(id) {
 // === 3. Lógica do Carrinho ===
 
 function adicionarAoCarrinho(livro) {
-    // Adiciona o livro na lista do carrinho
     carrinho.push(livro);
-    
-    // Atualiza o contador na Navbar
     document.getElementById('contador-carrinho').innerText = carrinho.length;
-
-    // Atualiza a visualização da barra lateral
     desenharCarrinhoLateral();
 
     // Fecha o modal de detalhes
@@ -116,17 +109,17 @@ function adicionarAoCarrinho(livro) {
     const modalInstance = bootstrap.Modal.getInstance(modalElement);
     modalInstance.hide();
 
-    // Abre a barra lateral do carrinho automaticamente para mostrar que adicionou
-    const offcanvasElement = document.getElementById('offcanvasCarrinho');
-    const offcanvasInstance = new bootstrap.Offcanvas(offcanvasElement);
-    offcanvasInstance.show();
+    
+    const toastElement = document.getElementById('toastSucesso');
+    const toast = new bootstrap.Toast(toastElement);
+    toast.show();
 }
 
 function desenharCarrinhoLateral() {
     const container = document.getElementById('lista-itens-carrinho');
     const totalElement = document.getElementById('valor-total-carrinho');
     
-    container.innerHTML = ''; // Limpa
+    container.innerHTML = ''; 
 
     let total = 0;
 
@@ -157,42 +150,52 @@ function desenharCarrinhoLateral() {
             container.innerHTML += itemHtml;
         });
     }
-
     totalElement.innerText = "R$ " + total.toFixed(2);
 }
 
 function removerDoCarrinho(index) {
-    carrinho.splice(index, 1); // Remove o item pelo índice
+    carrinho.splice(index, 1);
     document.getElementById('contador-carrinho').innerText = carrinho.length;
     desenharCarrinhoLateral();
 }
 
+// === 4. Finalização de Compra (Novo Modal) ===
 function finalizarCompraSimulada() {
     if (carrinho.length === 0) {
         alert("Seu carrinho está vazio! Adicione alguns livros antes de finalizar.");
         return;
     }
 
-    // 1. Calcula o total da compra
+    // Calcula o total
     let total = 0;
     carrinho.forEach(item => total += item.preco);
 
-    // 2. Mensagem sem emoji
-    const mensagem = `Pedido Confirmado com Sucesso!\n\n` +
-                     `Você adquiriu ${carrinho.length} livros.\n` +
-                     `Valor Total: R$ ${total.toFixed(2)}\n\n` +
-                     `Obrigado por escolher a EcoLivros. Boa leitura!`;
+    
+    const mensagemHtml = `
+        <p class="fs-5 mb-3">Obrigado por escolher a <strong>EcoLivros</strong>!</p>
+        <p class="text-muted">Você acabou de adquirir <strong>${carrinho.length} livros</strong>.</p>
+        <h3 class="text-success fw-bold my-4">Total: R$ ${total.toFixed(2)}</h3>
+        <p class="small text-muted">Seu apoio ajuda a manter a leitura sustentável. 🌱</p>
+    `;
 
-    // Mostra a mensagem
-    alert(mensagem);
+    
+    document.getElementById('modalCompraBody').innerHTML = mensagemHtml;
 
-    // 3. Fecha a barra lateral
+    // Fecha o carrinho
     const offcanvasElement = document.getElementById('offcanvasCarrinho');
     const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
     offcanvasInstance.hide();
 
-    // 4. Limpa o carrinho
+    
+    const modalSucesso = new bootstrap.Modal(document.getElementById('modalCompraSucesso'));
+    modalSucesso.show();
+
+    // Limpa o carrinho
     carrinho = [];
     document.getElementById('contador-carrinho').innerText = "0";
     desenharCarrinhoLateral();
 }
+
+document.getElementById('filtro-genero').addEventListener('change', function() {
+    atualizarTela();
+});

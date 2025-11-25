@@ -73,39 +73,30 @@
   <div class="modal fade" id="modalDetalhes" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        
         <div class="modal-header">
           <h5 class="modal-title fw-bold" id="detalheTitulo">Título do Livro</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        
         <div class="modal-body">
           <div class="text-center mb-3 bg-light p-3 rounded">
             <img id="detalheImagem" src="" class="img-fluid rounded shadow" style="max-height: 250px;">
           </div>
-          
           <h6 class="text-muted mb-3" id="detalheAutor">Autor</h6>
-          
           <div class="d-flex gap-2 mb-3">
             <span id="detalheGenero" class="badge bg-primary"></span>
             <span id="detalheEstado" class="badge bg-warning text-dark"></span>
           </div>
-
           <p id="detalheSinopse" class="text-secondary">Sinopse...</p>
-          
           <hr>
-          
           <div class="text-end">
             <small class="text-muted text-decoration-line-through">De: R$ <span id="detalhePrecoOriginal">0,00</span></small>
             <h3 class="text-success fw-bold">Por: R$ <span id="detalhePreco">0,00</span></h3>
           </div>
         </div>
-        
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
           <button type="button" class="btn btn-success" id="btn-adicionar-modal">Adicionar ao Carrinho 🛒</button>
         </div>
-
       </div>
     </div>
   </div>
@@ -116,11 +107,9 @@
       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body d-flex flex-column">
-      
       <div id="lista-itens-carrinho" class="flex-grow-1 overflow-auto mb-3">
         <p class="text-center text-muted mt-5">Seu carrinho está vazio.</p>
       </div>
-
       <div class="border-top pt-3">
         <div class="d-flex justify-content-between mb-2">
           <span>Total:</span>
@@ -130,7 +119,33 @@
           Finalizar Compra
         </button>
       </div>
+    </div>
+  </div>
 
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toastSucesso" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body fs-6">
+          ✅ Livro adicionado ao carrinho com sucesso!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalCompraSucesso" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title fw-bold">✅ Pedido Confirmado!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center py-4" id="modalCompraBody">
+          </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">Excelente! Boa leitura.</button>
+        </div>
+      </div>
     </div>
   </div>
 
