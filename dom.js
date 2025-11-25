@@ -169,25 +169,30 @@ function removerDoCarrinho(index) {
 
 function finalizarCompraSimulada() {
     if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio!");
+        alert("Seu carrinho está vazio! Adicione alguns livros antes de finalizar.");
         return;
     }
 
-    // Fecha a barra lateral
+    // 1. Calcula o total da compra
+    let total = 0;
+    carrinho.forEach(item => total += item.preco);
+
+    // 2. Mensagem sem emoji
+    const mensagem = `Pedido Confirmado com Sucesso!\n\n` +
+                     `Você adquiriu ${carrinho.length} livros.\n` +
+                     `Valor Total: R$ ${total.toFixed(2)}\n\n` +
+                     `Obrigado por escolher a EcoLivros. Boa leitura!`;
+
+    // Mostra a mensagem
+    alert(mensagem);
+
+    // 3. Fecha a barra lateral
     const offcanvasElement = document.getElementById('offcanvasCarrinho');
     const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
     offcanvasInstance.hide();
 
-    // Simula processamento
-    alert("Obrigado pela compra! \nPedido processado com sucesso. 🎉");
-
-    // Limpa tudo
+    // 4. Limpa o carrinho
     carrinho = [];
     document.getElementById('contador-carrinho').innerText = "0";
     desenharCarrinhoLateral();
 }
-
-// Filtro
-document.getElementById('filtro-genero').addEventListener('change', function() {
-    atualizarTela();
-});
